@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>Assignment1.1</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>Assignment1.1 test_plan.pdf</name>
+			<type>1</type>
+			<location>/Users/lchen95/Desktop/Assignment1.1/Assignment1.1 test_plan.pdf</location>
+		</link>
+		<link>
+			<name>manul_test_plane/Assignment1.1 test_plan-1.png</name>
+			<type>1</type>
+			<location>/Users/lchen95/Downloads/Assignment1.1 test_plan/Assignment1.1 test_plan-1.png</location>
+		</link>
+	</linkedResources>
+</projectDescription>

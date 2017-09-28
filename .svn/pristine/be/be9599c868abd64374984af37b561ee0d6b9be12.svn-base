@@ -1,0 +1,18 @@
+package pieces;
+
+public class King extends Piece{
+	public King(int x_pos,int y_pos,boolean player) {
+		// TODO Auto-generated constructor stub
+		super(x_pos, y_pos, player);
+		name = color?"Wking":"Bking";
+		image_white = "data/sprites/Wking.png";
+		image_black = "data/sprites/Bking.png";
+	}
+	@Override
+	public boolean CheckMovingRules(Board testBoard,int target_x_pos, int target_y_pos) {
+		// TODO Auto-generated method stub
+		if ((Math.abs(target_x_pos-cur_x_pos)<=1)&&(Math.abs(target_y_pos-cur_y_pos)<=1))
+			return true;
+		return false;
+	}
+}

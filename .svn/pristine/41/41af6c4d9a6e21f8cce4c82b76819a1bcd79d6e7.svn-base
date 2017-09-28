@@ -1,0 +1,109 @@
+package GameGUI;
+
+import java.awt.Cursor;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.Toolkit;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.image.BufferedImage;
+import java.util.Set;
+
+import GameGUI.Page;
+import pieces.Board;
+public class Game extends Page implements MouseListener, MouseMotionListener {
+	public BufferedImage gameBackground;
+	public Cursor handCursor;
+	// There are going to be more cursors( cursor changes every time player click a different piece), so I use array
+	public Cursor[] cursor_array = {handCursor};
+	public String[] cursor_names = {"hand"};
+	public Board board;
+	public static MouseOverArea[][] buttonArray;
+	
+	
+	/**
+	 * Constructor for game
+	 */
+	public Game() {
+		super("GAME");	
+		board = new Board();
+		
+		addMouseListener(this);
+		addMouseMotionListener(this);
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+		Point cursorHotSpot = new Point(0, 0);
+		buttonArray = new MouseOverArea[8][8];
+		for ( int i = 0;i<cursor_array.length;i++){
+			Image cursorImage = toolkit.getImage("data/cursors/"+cursor_names[i]+".cursor.png");
+			cursor_array[i] = toolkit.createCustomCursor(cursorImage, cursorHotSpot,cursor_names[i]+".cursor");
+		}
+		//draw pieces
+		for(int i = 0; i<8; i++){
+			for(int j = 0; j<8; j++){
+				//draw white pieces
+				if(board.board[i][j]!=null&&board.board[i][j].color){
+					buttonArray[i][j] = new MouseOverArea(board.board[i][j].name,board.board[i][j].image_white,188+65*i,68+64*j);
+					addMouseListener(buttonArray[i][j]);
+					addMouseMotionListener(buttonArray[i][j]);
+				}
+				//draw black pieces
+				else if (board.board[i][j]!=null&&!board.board[i][j].color){
+					buttonArray[i][j] = new MouseOverArea(board.board[i][j].name,board.board[i][j].image_black,188+65*i,68+64*j);	
+					addMouseListener(buttonArray[i][j]);
+					addMouseMotionListener(buttonArray[i][j]);
+				}
+			}
+		}
+		gameBackground = MouseOverArea.scale("data/bg.jpg", 0, 0);
+		GameFrame.mainFrame.setCursor(cursor_array[0]);
+	}
+	
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+	}
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+	}
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+	}
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+	}
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+	}
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+	}
+	
+	/**
+	 * draw the game board and all pieces
+	 * (non-Javadoc)
+	 * @see GameGUI.Page#draw(java.awt.Graphics)
+	 */
+	@Override
+	public void draw(Graphics g) {
+		g.drawImage(gameBackground, 0, 0, null);
+		for(int i = 0; i<8;i++){
+			for(int j = 0; j<8; j++){
+				if(buttonArray[i][j]!=null){
+					buttonArray[i][j].draw(g);
+				}
+			}
+		}
+	}
+}
